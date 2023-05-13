@@ -41,6 +41,7 @@ var (
 
 type webServerTemplateConfig struct {
 	NetworksAnnotationValue string
+	NginxImageValue 		string
 }
 
 type clientTemplateConfig struct {
@@ -60,6 +61,7 @@ func clientAppLabel() string {
 func (vt *ValidationTest) generateWebServerTemplateConfig() webServerTemplateConfig {
 	return webServerTemplateConfig{
 		NetworksAnnotationValue: vt.generateNetworksAnnotationValue(),
+		NginxImageValue: 		 vt.generateNginxImageValue(),
 	}
 }
 
@@ -135,6 +137,15 @@ func (vt *ValidationTest) generateNetworksAnnotationValue() string {
 		nets = append(nets, vt.ClusterNetwork)
 	}
 	return strings.Join(nets, ",")
+}
+
+func (vt *ValidationTest) generateNginxImageValue() string {
+	var nginx_image string
+	if vt.NginxImage != "" {
+		nginx_image = vt.NginxImage
+	}
+	nginx_image = strings.TrimSpace(nginx_image)
+	return nginx_image
 }
 
 func loadTemplate(name, templateFileText string, config interface{}) ([]byte, error) {
