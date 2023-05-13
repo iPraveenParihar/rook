@@ -71,8 +71,8 @@ type ValidationTest struct {
 	// Logger an instance of the basic log implementation used by this library.
 	Logger Logger
 
-	// TODO: allow overriding the nginx server image from CLI, and set from default var that can be
-	// overridden at build time
+	//NginxImage is the nginx image which will be used for the multus-validation-test-web-server pod.
+	NginxImage string
 }
 
 // ValidationTestResults contains results from a validation test.
@@ -264,6 +264,7 @@ func (vt *ValidationTest) Run(ctx context.Context) (*ValidationTestResults, erro
 	vt.Logger.Infof("  cluster network: %q", vt.ClusterNetwork)
 	vt.Logger.Infof("  daemons per node: %d", vt.DaemonsPerNode)
 	vt.Logger.Infof("  resource timeout: %v", vt.ResourceTimeout)
+	vt.Logger.Infof("  nginx image: %q", vt.NginxImage)
 
 	if vt.PublicNetwork == "" && vt.ClusterNetwork == "" {
 		return nil, fmt.Errorf("at least one of 'public network' and 'cluster network' must be specified")
@@ -330,3 +331,5 @@ func (vt *ValidationTest) CleanUp(ctx context.Context) (*ValidationTestResults, 
 	res.addSuggestions(suggestions)
 	return &res, err
 }
+
+

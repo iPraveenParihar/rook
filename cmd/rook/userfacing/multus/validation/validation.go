@@ -131,6 +131,8 @@ func init() {
 			"The default value is set to the worst-case value for a Rook Ceph cluster with 3 portable OSDs, 3 portable monitors, "+
 			"and where all optional child resources have been created with 1 daemon such that they all might run on a single node in a failure scenario. "+
 			"If you aren't sure what to choose for this value, add 1 for each additional OSD beyond 3.")
+	runCmd.Flags().StringVar(&validationConfig.NginxImage, "nginx-image", "nginx:stable-alpine",
+		"The nginx image that will be used for multus validation run.")
 
 	// flags for 'validation cleanup'
 	// none
