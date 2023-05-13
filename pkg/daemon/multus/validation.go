@@ -331,5 +331,3 @@ func (vt *ValidationTest) CleanUp(ctx context.Context) (*ValidationTestResults, 
 	res.addSuggestions(suggestions)
 	return &res, err
 }
-
-
