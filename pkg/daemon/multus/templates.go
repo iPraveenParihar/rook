@@ -41,7 +41,7 @@ var (
 
 type webServerTemplateConfig struct {
 	NetworksAnnotationValue string
-	NginxImageValue 		string
+	NginxImageValue         string
 }
 
 type clientTemplateConfig struct {
@@ -61,7 +61,7 @@ func clientAppLabel() string {
 func (vt *ValidationTest) generateWebServerTemplateConfig() webServerTemplateConfig {
 	return webServerTemplateConfig{
 		NetworksAnnotationValue: vt.generateNetworksAnnotationValue(),
-		NginxImageValue: 		 vt.generateNginxImageValue(),
+		NginxImageValue:         vt.generateNginxImageValue(),
 	}
 }
 
